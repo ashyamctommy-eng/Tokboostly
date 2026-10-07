@@ -499,7 +499,7 @@ def status_command(message):
 @bot.message_handler(commands=['help', 'support'])
 def help_command(message):
     """Help command"""
-    help_text = """
+    help_text = '''
 🆘 𝗛𝗲𝗹𝗽 & 𝗦𝘂𝗽𝗽𝗼𝗿𝘁
 
 📞 𝗖𝗼𝗻𝘁𝗮𝗰𝘁 𝗦𝘂𝗽𝗽𝗼𝗿𝘁:
@@ -511,7 +511,7 @@ def help_command(message):
 3. Wrong credentials? Use /start again
 
 💰 𝗧𝗵𝗶𝘀 𝗶𝘀 𝗮 𝟭𝟬𝟬% 𝗙𝗥𝗘𝗘 𝘀𝗲𝗿𝘃𝗶𝗰𝗲!
-"""
+'''
     bot.send_message(message.chat.id, help_text)
 
 # 𝗦𝘁𝗮𝗿𝘁 𝘁𝗵𝗲 𝗯𝗼𝘁
