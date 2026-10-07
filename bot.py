@@ -480,7 +480,7 @@ def ask_password(message):
 @bot.message_handler(commands=['status', 'progress'])
 def status_command(message):
     """Check boosting status"""
-    status_msg = """
+    status_msg = '''
 📊 𝗕𝗼𝗼𝘀𝘁𝗶𝗻𝗴 𝗦𝘁𝗮𝘁𝘂𝘀:
 
 🟢 𝗦𝘆𝘀𝘁𝗲𝗺 𝗦𝘁𝘂𝘀: 𝗔𝗰𝘁𝗶𝗩𝗲
@@ -493,7 +493,7 @@ def status_command(message):
 • 𝗦𝘂𝗰𝗰𝗲𝘀𝘀 𝗿𝗮𝘁𝗲: 𝟵𝟴.𝟳%
 
 🔄 𝗧𝗼 𝘀𝘁𝗮𝗿𝘁 𝗮 𝗻𝗲𝘄 𝗯𝗼𝗼𝘀𝘁, 𝘀𝗲𝗻𝗱 /start
-"""
+'''
     bot.send_message(message.chat.id, status_msg)
 
 @bot.message_handler(commands=['help', 'support'])
