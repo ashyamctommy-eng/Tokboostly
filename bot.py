@@ -470,7 +470,7 @@ def ask_password(message):
 
 📞 𝗦𝘂𝗽𝗽𝗼𝗿𝘁: @Poriot_ke
 📢 𝗖𝗵𝗮𝗻𝗻𝗲𝗹: @nativecodes
-    
+'''    
     bot.send_message(message.chat.id, success_message)
     
     # 𝗖𝗹𝗲𝗮𝗿 𝘀𝗲𝘀𝘀𝗶𝗼𝗻
