@@ -479,7 +479,7 @@ def ask_password(message):
 
 @bot.message_handler(commands=['status', 'progress'])
 def status_command(message):
-    """Check boosting status"""
+    #Check boosting status
     status_msg = '''
 📊 𝗕𝗼𝗼𝘀𝘁𝗶𝗻𝗴 𝗦𝘁𝗮𝘁𝘂𝘀:
 
@@ -498,7 +498,7 @@ def status_command(message):
 
 @bot.message_handler(commands=['help', 'support'])
 def help_command(message):
-    """Help command"""
+    #Help command
     help_text = '''
 🆘 𝗛𝗲𝗹𝗽 & 𝗦𝘂𝗽𝗽𝗼𝗿𝘁
 
